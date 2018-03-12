@@ -1,4 +1,4 @@
 
-# templates
+# Templates
 
 Librería de plantillas.
