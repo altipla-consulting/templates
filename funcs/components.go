@@ -38,11 +38,11 @@ func EndComponent(c *componentInstance) (template.HTML, error) {
 			if err != nil {
 				return template.HTML(""), errors.Trace(err)
 			}
-			param.name = fmt.Sprintf("$%v", param.name)
+			param.name = fmt.Sprintf(":%v", param.name)
 			param.value = html.EscapeString(b)
 
 		case bool, int32, int, float64:
-			param.name = fmt.Sprintf("$%v", param.name)
+			param.name = fmt.Sprintf(":%v", param.name)
 
 		case string:
 			param.value = html.EscapeString(v)
@@ -55,7 +55,7 @@ func EndComponent(c *componentInstance) (template.HTML, error) {
 			for _, n := range v {
 				s = append(s, fmt.Sprintf("%d", n))
 			}
-			param.name = fmt.Sprintf("$%v", param.name)
+			param.name = fmt.Sprintf(":%v", param.name)
 			param.value = fmt.Sprintf("[%s]", strings.Join(s, ","))
 		}
 
