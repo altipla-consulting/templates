@@ -34,6 +34,7 @@ func NativeName(lang string) string {
 		"ca": "Català",
 		"en": "English",
 		"fr": "Français",
+		"de": "Deutsch",
 	}
 	return names[lang]
 }
