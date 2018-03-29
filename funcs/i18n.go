@@ -61,7 +61,7 @@ func Translate(lang, format string) string {
 
 	msg, ok := messages[format]
 	if !ok {
-		msg = map[string]string{}
+		msg = map[string]string{"es": format}
 	}
 
 	// En producción se parte correctamente la descripción; pero en desarrollo
