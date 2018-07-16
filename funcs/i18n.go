@@ -2,12 +2,12 @@ package funcs
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"strings"
 
 	"github.com/altipla-consulting/content"
 	"github.com/altipla-consulting/messageformat"
-	"github.com/juju/errors"
 )
 
 var messages = map[string]map[string]string{}
@@ -43,12 +43,12 @@ func MsgFormat(lang, format string, params ...interface{}) (string, error) {
 
 	message, err := messageformat.New(format)
 	if err != nil {
-		return "", errors.Trace(err)
+		return "", fmt.Errorf("templates: cannot parse messageformat: %s", format)
 	}
 
 	res, err := message.Format(lang, params)
 	if err != nil {
-		return "", errors.Trace(err)
+		return "", fmt.Errorf("templates: cannot run messageformat: %s", format)
 	}
 
 	return res, nil

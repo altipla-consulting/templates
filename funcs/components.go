@@ -9,24 +9,23 @@ import (
 
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
-	"github.com/juju/errors"
 )
 
-type componentInstance struct {
+type ComponentInstance struct {
 	name   string
-	params []*componentParam
+	params []*ComponentInstanceParam
 }
 
-type componentParam struct {
+type ComponentInstanceParam struct {
 	name  string
 	value interface{}
 }
 
-func Component(name string) *componentInstance {
-	return &componentInstance{name: name}
+func Component(name string) *ComponentInstance {
+	return &ComponentInstance{name: name}
 }
 
-func EndComponent(c *componentInstance) (template.HTML, error) {
+func EndComponent(c *ComponentInstance) (template.HTML, error) {
 	var buf bytes.Buffer
 
 	fmt.Fprintf(&buf, `<div data-vue="%s"`, c.name)
@@ -36,7 +35,7 @@ func EndComponent(c *componentInstance) (template.HTML, error) {
 			m := jsonpb.Marshaler{EmitDefaults: true}
 			b, err := m.MarshalToString(v)
 			if err != nil {
-				return template.HTML(""), errors.Trace(err)
+				return template.HTML(""), fmt.Errorf("templates: cannot marshal component param %s: %s", c.name, err)
 			}
 			param.name = fmt.Sprintf("$%v", param.name)
 			param.value = html.EscapeString(b)
@@ -66,7 +65,7 @@ func EndComponent(c *componentInstance) (template.HTML, error) {
 	return template.HTML(buf.String()), nil
 }
 
-func ComponentParam(c *componentInstance, name string, value interface{}) string {
-	c.params = append(c.params, &componentParam{name, value})
+func ComponentParam(c *ComponentInstance, name string, value interface{}) string {
+	c.params = append(c.params, &ComponentInstanceParam{name, value})
 	return ""
 }

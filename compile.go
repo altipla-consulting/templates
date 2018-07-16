@@ -1,18 +1,17 @@
 package templates
 
 import (
+	"fmt"
 	"html/template"
 	"text/template/parse"
-
-	"github.com/juju/errors"
 
 	"github.com/altipla-consulting/templates/funcs"
 )
 
 var (
 	viewsFuncs = template.FuncMap{
-		"safehtml": funcs.SafeHtml,
-		"safejs":   funcs.SafeJs,
+		"safehtml": funcs.SafeHTML,
+		"safejs":   funcs.SafeJavascript,
 		"safeurl":  funcs.SafeURL,
 
 		"thumbnail": funcs.Thumbnail,
@@ -67,12 +66,14 @@ var (
 	}
 )
 
+// Load receives a list of globs and load every template that matches those folders.
+// All folders must have at least one template or it will fail the loading.
 func Load(folders ...string) (*template.Template, error) {
 	tmpl := template.New("root").Funcs(viewsFuncs)
 
 	for _, folder := range folders {
 		if _, err := tmpl.ParseGlob(folder); err != nil {
-			return nil, errors.Trace(err)
+			return nil, fmt.Errorf("templates: cannot parse folder %s: %s", folder, err)
 		}
 	}
 

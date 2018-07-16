@@ -1,19 +1,19 @@
 package funcs
 
-type templateVar struct {
+type Var struct {
 	value interface{}
 }
 
-func NewVar(value interface{}) *templateVar {
-	return &templateVar{value}
+func NewVar(value interface{}) *Var {
+	return &Var{value}
 }
 
-func SetVar(v *templateVar, value interface{}) string {
+func SetVar(v *Var, value interface{}) string {
 	v.value = value
 
 	return ""
 }
 
-func GetVar(v *templateVar) interface{} {
+func GetVar(v *Var) interface{} {
 	return v.value
 }

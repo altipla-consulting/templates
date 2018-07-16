@@ -8,19 +8,18 @@ import (
 
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
-	"github.com/juju/errors"
 )
 
 func Dict(values ...interface{}) (map[string]interface{}, error) {
 	if len(values)%2 != 0 {
-		return nil, errors.New("dict arguments should be pairs of key,value items")
+		return nil, fmt.Errorf("templates: dict arguments should be pairs of key,value items")
 	}
 
 	dict := make(map[string]interface{}, len(values)/2)
 	for i := 0; i < len(values); i += 2 {
 		key, ok := values[i].(string)
 		if !ok {
-			return nil, errors.New("dict keys should be strings")
+			return nil, fmt.Errorf("templates: dict keys should be strings")
 		}
 
 		dict[key] = values[i+1]
@@ -40,18 +39,22 @@ func JSON(obj interface{}) (string, error) {
 			EmitDefaults: true,
 		}
 		b, err := m.MarshalToString(msg)
-		return b, errors.Trace(err)
+		return b, err
 	}
 
 	b, err := json.Marshal(obj)
-	return string(b), errors.Trace(err)
+	if err != nil {
+		return "", fmt.Errorf("templates: cannot marshal json")
+	}
+
+	return string(b), nil
 }
 
 func Vue(obj interface{}) (template.JS, error) {
 	str, err := JSON(obj)
 	if err != nil {
-		return template.JS(""), errors.Trace(err)
+		return template.JS(""), fmt.Errorf("templates: cannot marshal vue: %s", err)
 	}
 
-	return SafeJs(str)
+	return SafeJavascript(str)
 }

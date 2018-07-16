@@ -1,11 +1,11 @@
 package funcs
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
 	"github.com/ernestoalejo/aeimagesflags"
-	"github.com/juju/errors"
 )
 
 func Thumbnail(servingURL string, strFlags string) (string, error) {
@@ -19,21 +19,21 @@ func Thumbnail(servingURL string, strFlags string) (string, error) {
 	for _, part := range strings.Split(strFlags, ";") {
 		strFlag := strings.Split(part, "=")
 		if len(strFlag) != 2 {
-			return "", errors.New("all flags should be in the form key=value")
+			return "", fmt.Errorf("templates: all flags should be in the form key=value")
 		}
 
 		switch strings.TrimSpace(strFlag[0]) {
 		case "width":
 			n, err := strconv.ParseUint(strFlag[1], 10, 64)
 			if err != nil {
-				return "", errors.Trace(err)
+				return "", fmt.Errorf("templates: cannot parse flag: %s", err)
 			}
 			flags.Width = n
 
 		case "height":
 			n, err := strconv.ParseUint(strFlag[1], 10, 64)
 			if err != nil {
-				return "", errors.Trace(err)
+				return "", fmt.Errorf("templates: cannot parse flag: %s", err)
 			}
 			flags.Height = n
 
@@ -47,7 +47,7 @@ func Thumbnail(servingURL string, strFlags string) (string, error) {
 			flags.Original = (strFlag[1] == "true")
 
 		default:
-			return "", errors.Errorf("unknown flag: %s", strFlag[0])
+			return "", fmt.Errorf("templates: unknown image flag: %s", strFlag[0])
 		}
 	}
 
