@@ -11,6 +11,7 @@ deps:
 	go get -u github.com/altipla-consulting/content
 	go get -u github.com/altipla-consulting/dateformatter
 	go get -u github.com/altipla-consulting/datetime
+	go get -u github.com/altipla-consulting/langs
 	go get -u github.com/altipla-consulting/messageformat
 	go get -u github.com/altipla-consulting/money
 	go get -u github.com/ernestoalejo/aeimagesflags
