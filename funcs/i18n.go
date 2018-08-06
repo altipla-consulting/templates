@@ -28,16 +28,6 @@ func init() {
 	}
 }
 
-func NativeName(lang string) string {
-	names := map[string]string{
-		"es": "Español",
-		"ca": "Català",
-		"en": "English",
-		"fr": "Français",
-	}
-	return names[lang]
-}
-
 func MsgFormat(lang, format string, params ...interface{}) (string, error) {
 	format = Translate(lang, format)
 

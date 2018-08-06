@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"text/template/parse"
 
+	"github.com/altipla-consulting/langs"
+
 	"github.com/altipla-consulting/templates/funcs"
 )
 
@@ -33,7 +35,7 @@ var (
 
 		"development": funcs.Development,
 
-		"nativename": funcs.NativeName,
+		"nativename": langs.NativeName,
 		"msgformat":  funcs.MsgFormat,
 		"__":         funcs.Translate,
 
