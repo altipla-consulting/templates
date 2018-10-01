@@ -13,15 +13,6 @@ Helper functions for html/template to assist with common actions, i18n or assets
 go get github.com/altipla-consulting/templates
 ```
 
-This library depends on the following ones:
-- [github.com/altipla-consulting/content](github.com/altipla-consulting/content)
-- [github.com/altipla-consulting/dateformatter](github.com/altipla-consulting/dateformatter)
-- [github.com/altipla-consulting/datetime](github.com/altipla-consulting/datetime)
-- [github.com/altipla-consulting/langs](github.com/altipla-consulting/langs)
-- [github.com/altipla-consulting/messageformat](github.com/altipla-consulting/messageformat)
-- [github.com/altipla-consulting/money](github.com/altipla-consulting/money)
-- [github.com/ernestoalejo/aeimagesflags](github.com/ernestoalejo/aeimagesflags)
-
 
 ### Contributing
 

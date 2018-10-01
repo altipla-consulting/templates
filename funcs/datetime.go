@@ -5,7 +5,7 @@ import (
 
 	"github.com/altipla-consulting/dateformatter"
 	"github.com/altipla-consulting/datetime"
-	pbdatetime "github.com/altipla-consulting/datetime/protos/datetime"
+	pbdatetime "github.com/altipla-consulting/datetime/altipla/datetime"
 )
 
 func DateFormat(t time.Time, lang, layout string) string {
