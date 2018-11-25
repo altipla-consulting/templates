@@ -59,6 +59,7 @@ var (
 
 		"dateformat":      funcs.DateFormat,
 		"protodateformat": funcs.ProtoDateFormat,
+		"timestampformat": funcs.TimestampFormat,
 
 		"component":    funcs.Component,
 		"endcomponent": funcs.EndComponent,
@@ -104,7 +105,7 @@ func applyTreeChanges(nodes []parse.Node) []parse.Node {
 		}
 
 		switch ident := call.Args[0].(*parse.IdentifierNode).Ident; ident {
-		case "msgformat", "__", "protodateformat":
+		case "msgformat", "__", "protodateformat", "timestampformat":
 			args := []parse.Node{
 				parse.NewIdentifier(ident),
 				&parse.VariableNode{Ident: []string{"$", "Lang"}},
