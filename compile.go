@@ -66,6 +66,7 @@ var (
 		"param":        funcs.ComponentParam,
 
 		"asset": funcs.Asset,
+		"rev":   funcs.Rev,
 	}
 )
 
