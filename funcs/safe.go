@@ -40,3 +40,15 @@ func SafeURL(s ...string) (template.URL, error) {
 
 	return template.URL(s[0]), nil
 }
+
+func SafeCSS(s ...string) (template.CSS, error) {
+	if len(s) == 0 {
+		return template.CSS(""), nil
+	}
+
+	if len(s) > 1 {
+		return template.CSS(""), fmt.Errorf("templates: can only sanitize one content at a time")
+	}
+
+	return template.CSS(s[0]), nil
+}
