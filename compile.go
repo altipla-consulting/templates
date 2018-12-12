@@ -15,6 +15,7 @@ var (
 		"safehtml": funcs.SafeHTML,
 		"safejs":   funcs.SafeJavascript,
 		"safeurl":  funcs.SafeURL,
+		"safecss":  funcs.SafeCSS,
 
 		"thumbnail": funcs.Thumbnail,
 
