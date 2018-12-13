@@ -46,6 +46,13 @@ func Thumbnail(servingURL string, strFlags string) (string, error) {
 		case "original":
 			flags.Original = (strFlag[1] == "true")
 
+		case "size":
+			n, err := strconv.ParseUint(strFlag[1], 10, 64)
+			if err != nil {
+				return "", fmt.Errorf("templates: cannot parse flag: %s", err)
+			}
+			flags.Size = n
+
 		default:
 			return "", fmt.Errorf("templates: unknown image flag: %s", strFlag[0])
 		}
