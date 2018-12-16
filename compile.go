@@ -68,6 +68,8 @@ var (
 
 		"asset": funcs.Asset,
 		"rev":   funcs.Rev,
+
+		"include": funcs.Include,
 	}
 )
 
