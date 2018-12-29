@@ -1,6 +1,8 @@
 
 # Templates
 
+> **DEPRECATED:** Use https://github.com/altipla-consulting/libs instead.
+
 [![GoDoc](https://godoc.org/github.com/altipla-consulting/templates?status.svg)](https://godoc.org/github.com/altipla-consulting/templates)
 [![Build Status](https://travis-ci.org/altipla-consulting/templates.svg?branch=master)](https://travis-ci.org/altipla-consulting/templates)
 
